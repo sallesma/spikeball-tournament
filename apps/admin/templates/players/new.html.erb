@@ -1,0 +1,24 @@
+<h2>Add player</h2>
+
+<%=
+  form_for :player, '/admin/players' do
+    div class: 'input' do
+      label      :first_name
+      text_field :first_name
+    end
+
+    div class: 'input' do
+      label      :last_name
+      text_field :last_name
+    end
+
+    div class: 'input' do
+      label      :email
+      text_field :email
+    end
+
+    div class: 'controls' do
+      submit 'Create'
+    end
+  end
+%>
