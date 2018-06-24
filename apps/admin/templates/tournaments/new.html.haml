@@ -1,0 +1,24 @@
+%h2
+  Add tournament
+
+- unless params.valid?
+  .errors
+    %h3
+      There was a problem with your submission
+    %ul
+      - params.error_messages.each do |message|
+        %li= message
+
+= form_for :tournament, routes.tournaments_path do
+  - div class: 'input' do
+    - label      :name
+    - text_field :name
+
+  - div class: 'input' do
+    - label      :date
+    - date_field :date
+
+  - div class: 'controls' do
+    - submit 'Create'
+
+= link_to 'Tournaments list', routes.tournaments_path

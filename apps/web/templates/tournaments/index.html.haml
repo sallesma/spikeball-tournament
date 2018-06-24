@@ -1,0 +1,20 @@
+%h2
+  All tournaments
+
+- if tournaments.any?
+  %table#tournaments
+    %tr
+      %th Name
+      %th Date
+      %th Created at
+      %th Actions
+
+    - tournaments.each do |tournament|
+      %tr.tournament
+        %td= tournament.name
+        %td= tournament.date
+        %td= tournament.created_at
+        %td= link_to 'Show', routes.tournament_path(tournament.id)
+- else
+  %p.placeholder
+    There are no tournaments yet.

@@ -1,0 +1,24 @@
+%h2
+  All tournaments
+
+= link_to 'Add a tournament', routes.new_tournament_path
+
+- if tournaments.any?
+  %table#tournaments
+    %tr
+      %th Name
+      %th Date
+      %th Created at
+      %th Actions
+
+    - tournaments.each do |tournament|
+      %tr.tournament
+        %td= tournament.name
+        %td= tournament.date
+        %td= tournament.created_at
+        %td
+          = link_to 'Show', routes.tournament_path(tournament.id)
+          = link_to 'Edit', routes.edit_tournament_path(tournament.id)
+- else
+  %p.placeholder
+    There are no tournaments yet.

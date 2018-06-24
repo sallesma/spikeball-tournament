@@ -1,0 +1,15 @@
+%h2
+  Tournament #{tournament.id}
+
+= link_to 'Edit', routes.edit_tournament_path(tournament.id)
+= link_to_destroy(tournament)
+
+.tournament
+  %p
+    Name:
+    = tournament.name
+  %p
+    Date:
+    = tournament.date
+
+= link_to 'Tournaments list', routes.tournaments_path

@@ -4,7 +4,7 @@ describe Admin::Controllers::Players::Create do
   let(:action) { Admin::Controllers::Players::Create.new }
   let(:repository) { PlayerRepository.new }
 
-  before do
+  after do
     repository.clear
   end
 

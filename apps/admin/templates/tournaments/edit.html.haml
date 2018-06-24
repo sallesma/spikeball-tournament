@@ -1,0 +1,25 @@
+%h2
+  Edit tournament
+  = tournament.id
+
+= link_to 'Show', routes.tournament_path(tournament.id)
+
+- unless params.valid?
+  .errors
+    %h3
+      There was a problem with your submission
+    %ul
+      - params.error_messages.each do |message|
+        %li= message
+
+= form_for :tournament, routes.tournament_path(tournament.id), method: :patch do
+  - div class: 'input' do
+    - label      :name
+    - text_field :name, value: tournament.name
+
+  - div class: 'input' do
+    - label      :date
+    - text_field :date, value: tournament.date
+
+  - div class: 'controls' do
+    - submit 'Update'
