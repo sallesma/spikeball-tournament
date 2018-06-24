@@ -2,6 +2,8 @@
   Edit player
   = player.id
 
+= link_to 'Show', routes.player_path(player.id)
+
 - unless params.valid?
   .errors
     %h3

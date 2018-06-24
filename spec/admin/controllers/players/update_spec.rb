@@ -7,9 +7,11 @@ describe Admin::Controllers::Players::Update do
   let(:repository) { PlayerRepository.new }
 
   before do
-    repository.clear
-
     @player = repository.create(id: id, first_name: 'George', last_name: 'Abitbol', email:'george@spikeball.com')
+  end
+
+  after do
+    repository.clear
   end
 
   describe 'with valid params' do

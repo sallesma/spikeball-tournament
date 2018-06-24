@@ -1,6 +1,9 @@
 %h2
   Player #{player.id}
 
+= link_to 'Edit', routes.edit_player_path(player.id)
+= link_to_destroy(player)
+
 .player
   %p
     First Name:
@@ -12,4 +15,4 @@
     Email:
     = player.email
 
-= link_to_players
+= link_to 'Players list', routes.players_path

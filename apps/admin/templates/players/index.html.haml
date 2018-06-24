@@ -1,16 +1,26 @@
 %h2
   All players
 
-= link_to_new_player
+= link_to 'Add a player', routes.new_player_path
 
 - if players.any?
-  #players
+  %table#players
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Created at
+      %th Actions
+
     - players.each do |player|
-      .player
-        %h2= full_name(player)
-        %p= player.email
-        = link_to_player(player)
-        = link_to_edit_player(player)
+      %tr.player
+        %td= player.first_name
+        %td= player.last_name
+        %td= player.email
+        %td= player.created_at
+        %td
+          = link_to 'Show', routes.player_path(player.id)
+          = link_to 'Edit', routes.edit_player_path(player.id)
 - else
   %p.placeholder
     There are no players yet.

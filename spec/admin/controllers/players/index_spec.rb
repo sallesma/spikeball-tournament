@@ -6,9 +6,11 @@ describe Admin::Controllers::Players::Index do
   let(:repository) { PlayerRepository.new }
 
   before do
-    repository.clear
-
     @player = repository.create(first_name: 'George', last_name: 'Abitbol', email:'george@spikeball.com')
+  end
+
+  after do
+    repository.clear
   end
 
   it 'is successful' do

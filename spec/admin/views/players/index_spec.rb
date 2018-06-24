@@ -34,40 +34,4 @@ describe Admin::Views::Players::Index do
       end
     end
   end
-
-  describe '#link_to_player' do
-    let(:player) { Player.new(id: 1, first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com') }
-    let(:exposures) { Hash[players: [player]] }
-
-    it 'returns link to special player' do
-      link = view.link_to_player(player)
-      link.to_s.must_equal '<a href="/admin/players/1">Show</a>'
-    end
-  end
-
-  describe '#link_to_edit_player' do
-    let(:player) { Player.new(id: 1, first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com') }
-    let(:exposures) { Hash[players: [player]] }
-
-    it 'returns link to special player' do
-      link = view.link_to_edit_player(player)
-      link.to_s.must_equal '<a href="/admin/players/1/edit">Edit</a>'
-    end
-  end
-
-  describe '#link_to_new_ player' do
-    it 'returns link to special player' do
-      link = view.link_to_new_player
-      link.to_s.must_equal '<a href="/admin/players/new">Add a player</a>'
-    end
-  end
-
-  describe '#full_name' do
-    let(:player) { Player.new(id: 1, first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com') }
-    let(:exposures) { Hash[players: [player]] }
-
-    it 'returns the full name' do
-      view.full_name(player).must_equal 'George Abitbol'
-    end
-  end
 end

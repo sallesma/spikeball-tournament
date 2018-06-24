@@ -20,10 +20,15 @@ describe Admin::Views::Players::Show do
     end
   end
 
-  describe '#link_to_players' do
+  describe '#link_to_destroy' do
     it 'returns link to players list' do
-      link = view.link_to_players
-      link.to_s.must_equal '<a href="/admin/players">Players list</a>'
+      link = view.link_to_destroy(player)
+      link.to_s.must_equal (
+        '<form action="/admin/players/1" method="POST">' + "\n" +
+          '<input type="hidden" name="_method" value="DELETE">' + "\n" +
+          '<input type="submit" value="Destroy">' + "\n" +
+        '</form>'
+      )
     end
   end
 end

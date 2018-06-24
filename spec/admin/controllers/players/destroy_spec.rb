@@ -1,7 +1,7 @@
 require_relative '../../../spec_helper'
 
-describe Admin::Controllers::Players::Show do
-  let(:action) { Admin::Controllers::Players::Show.new }
+describe Admin::Controllers::Players::Destroy do
+  let(:action) { Admin::Controllers::Players::Destroy.new }
   let(:params) { Hash[id: 1] }
   let(:repository) { PlayerRepository.new }
 
@@ -13,13 +13,15 @@ describe Admin::Controllers::Players::Show do
     repository.clear
   end
 
-  it 'is successful' do
+  it 'is a redirection to player list' do
     response = action.call(params)
-    response[0].must_equal 200
+
+    response[0].must_equal 302
+    response[1]['Location'].must_equal '/admin/players'
   end
 
-  it 'exposes the player' do
+  it 'deletes the player' do
     action.call(params)
-    action.exposures[:player].must_equal @player
+    assert_nil repository.find(1)
   end
 end
