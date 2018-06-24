@@ -6,6 +6,6 @@ describe Admin::Views::ApplicationLayout do
   let(:template) { Hanami::View::Template.new('apps/admin/templates/application.html.erb') }
 
   it 'contains application name' do
-    rendered.must_include('Admin')
+    rendered.must_include('Spikeball admin')
   end
 end
