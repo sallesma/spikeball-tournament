@@ -1,0 +1,14 @@
+%h2
+  All players
+
+- if players.any?
+  #players
+    - players.each do |player|
+      .player
+        %h2
+          = player.first_name
+          = player.last_name
+        %p= player.email
+- else
+  %p.placeholder
+    There are no players yet.

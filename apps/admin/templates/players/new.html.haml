@@ -1,0 +1,26 @@
+%h2
+  Add player
+
+- unless params.valid?
+  .errors
+    %h3
+      There was a problem with your submission
+    %ul
+      - params.error_messages.each do |message|
+        %li= message
+
+= form_for :player, routes.players_path do
+  - div class: 'input' do
+    - label      :first_name
+    - text_field :first_name
+
+  - div class: 'input' do
+    - label      :last_name
+    - text_field :last_name
+
+  - div class: 'input' do
+    - label      :email
+    - text_field :email
+
+  - div class: 'controls' do
+    - submit 'Create'

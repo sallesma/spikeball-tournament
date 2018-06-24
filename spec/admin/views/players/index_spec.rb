@@ -2,7 +2,7 @@ require_relative '../../../spec_helper'
 
 describe Admin::Views::Players::Index do
   let(:exposures) { Hash[players: []] }
-  let(:template)  { Hanami::View::Template.new('apps/admin/templates/players/index.html.erb') }
+  let(:template)  { Hanami::View::Template.new('apps/admin/templates/players/index.html.haml') }
   let(:view)      { Admin::Views::Players::Index.new(template, exposures) }
   let(:rendered)  { view.render }
 
@@ -12,7 +12,7 @@ describe Admin::Views::Players::Index do
 
   describe 'when there are no players' do
     it 'shows a placeholder message' do
-      rendered.must_include('<p class="placeholder">There are no players yet.</p>')
+      rendered.must_include('There are no players yet.')
     end
   end
 
@@ -22,7 +22,7 @@ describe Admin::Views::Players::Index do
     let(:exposures) { Hash[players: [player1, player2]] }
 
     it 'lists them all' do
-      rendered.scan(/class="player"/).count.must_equal 2
+      rendered.scan(/class='player'/).count.must_equal 2
       rendered.must_include('George')
       rendered.must_include('Noel')
     end
