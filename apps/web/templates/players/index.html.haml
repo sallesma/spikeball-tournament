@@ -1,0 +1,23 @@
+%h2
+  All players
+
+- if players.any?
+  %table#players
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Created at
+      %th Actions
+
+    - players.each do |player|
+      %tr.player
+        %td= player.first_name
+        %td= player.last_name
+        %td= player.email
+        %td= player.created_at
+        %td
+          = link_to 'Show', routes.player_path(player.id)
+- else
+  %p.placeholder
+    There are no players yet.
