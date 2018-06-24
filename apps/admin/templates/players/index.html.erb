@@ -1,13 +1,14 @@
 <h2>All players</h2>
 
-<div id="players">
-  <div class="player">
-    <h3>Patterns of Enterprise Application Architecture</h3>
-    <p>by <strong>Martin Fowler</strong></p>
+<% if players.any? %>
+  <div id="players">
+    <% players.each do |player| %>
+      <div class="player">
+        <h2><%= player.first_name %> <%= player.last_name %></h2>
+        <p><%= player.email %></p>
+      </div>
+    <% end %>
   </div>
-
-  <div class="player">
-    <h3>Test Driven Development</h3>
-    <p>by <strong>Kent Beck</strong></p>
-  </div>
-</div>
+<% else %>
+  <p class="placeholder">There are no players yet.</p>
+<% end %>
