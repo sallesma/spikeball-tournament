@@ -13,7 +13,7 @@
 
 
 <%=
-  form_for :player, '/admin/players' do
+  form_for :player, routes.players_path do
     div class: 'input' do
       label      :first_name
       text_field :first_name

@@ -16,7 +16,7 @@ module Admin::Controllers::Players
       if params.valid?
         PlayerRepository.new.create(params[:player])
 
-        redirect_to '/admin/players'
+        redirect_to routes.players_path
       else
         self.status = 422
       end
