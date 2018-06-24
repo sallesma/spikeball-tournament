@@ -4,4 +4,4 @@
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
 
-resources :players, only: [:index, :new, :create, :show]
+resources :players, except: [:destroy]

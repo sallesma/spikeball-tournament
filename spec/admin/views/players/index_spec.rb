@@ -45,6 +45,16 @@ describe Admin::Views::Players::Index do
     end
   end
 
+  describe '#link_to_edit_player' do
+    let(:player) { Player.new(id: 1, first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com') }
+    let(:exposures) { Hash[players: [player]] }
+
+    it 'returns link to special player' do
+      link = view.link_to_edit_player(player)
+      link.to_s.must_equal '<a href="/admin/players/1/edit">Edit</a>'
+    end
+  end
+
   describe '#link_to_new_ player' do
     it 'returns link to special player' do
       link = view.link_to_new_player

@@ -10,6 +10,7 @@
         %h2= full_name(player)
         %p= player.email
         = link_to_player(player)
+        = link_to_edit_player(player)
 - else
   %p.placeholder
     There are no players yet.

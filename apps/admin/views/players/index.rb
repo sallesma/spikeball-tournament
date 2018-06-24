@@ -6,6 +6,10 @@ module Admin::Views::Players
       link_to 'Show', routes.player_path(player.id)
     end
 
+    def link_to_edit_player(player)
+      link_to 'Edit', routes.edit_player_path(player.id)
+    end
+
     def link_to_new_player
       link_to 'Add a player', routes.new_player_path
     end

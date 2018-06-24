@@ -1,0 +1,27 @@
+%h2
+  Edit player
+  = player.id
+
+- unless params.valid?
+  .errors
+    %h3
+      There was a problem with your submission
+    %ul
+      - params.error_messages.each do |message|
+        %li= message
+
+= form_for :player, routes.player_path(player.id), method: :patch do
+  - div class: 'input' do
+    - label      :first_name
+    - text_field :first_name, value: player.first_name
+
+  - div class: 'input' do
+    - label      :last_name
+    - text_field :last_name, value: player.last_name
+
+  - div class: 'input' do
+    - label      :email
+    - text_field :email, value: player.email
+
+  - div class: 'controls' do
+    - submit 'Update'
