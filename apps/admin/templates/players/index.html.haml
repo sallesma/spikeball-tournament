@@ -1,14 +1,15 @@
 %h2
   All players
 
+= link_to_new_player
+
 - if players.any?
   #players
     - players.each do |player|
       .player
-        %h2
-          = player.first_name
-          = player.last_name
+        %h2= full_name(player)
         %p= player.email
+        = link_to_player(player)
 - else
   %p.placeholder
     There are no players yet.
