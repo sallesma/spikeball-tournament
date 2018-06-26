@@ -1,0 +1,21 @@
+require 'features_helper'
+
+describe 'List players' do
+  let(:repository) { PlayerRepository.new }
+  before do
+    repository.create(first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com')
+    repository.create(first_name: 'Noel', last_name: 'Flantier', email: 'noel@spikeball.com')
+  end
+
+  after do
+    repository.clear
+  end
+
+  it 'displays each player on the page' do
+    visit '/players'
+
+    within '#players' do
+      assert page.has_css?('.player', count: 2), 'Expected to find 2 players'
+    end
+  end
+end
