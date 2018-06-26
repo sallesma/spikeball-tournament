@@ -1,0 +1,27 @@
+%h2
+  Register to a tournament
+
+- unless params.valid?
+  .errors
+    %h3
+      There was a problem with your submission
+    %ul
+      - params.error_messages.each do |message|
+        %li= message
+
+= form_for :registration, routes.tournament_registrations_path(tournament.id) do
+  - fields_for :player do
+    - div class: 'input' do
+      - label      :first_name
+      - text_field :first_name
+    - div class: 'input' do
+      - label      :last_name
+      - text_field :last_name
+    - div class: 'input' do
+      - label      :email
+      - text_field :email
+
+  - div class: 'controls' do
+    - submit 'Register'
+
+= link_to 'Show tournament', routes.tournament_path(tournament.id)
