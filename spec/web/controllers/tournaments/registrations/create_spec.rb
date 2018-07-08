@@ -4,6 +4,7 @@ describe Web::Controllers::Tournaments::Registrations::Create do
   let(:action) { Web::Controllers::Tournaments::Registrations::Create.new }
   let(:repository) { RegistrationRepository.new }
   let(:tournament_repository) { TournamentRepository.new }
+  let(:player_repository) { PlayerRepository.new }
 
   before do
     @tournament = tournament_repository.create(name: 'Coupe', date: Date.today)
@@ -12,6 +13,7 @@ describe Web::Controllers::Tournaments::Registrations::Create do
   after do
     repository.clear
     tournament_repository.clear
+    player_repository.clear
   end
 
   describe 'with valid params' do
@@ -34,7 +36,8 @@ describe Web::Controllers::Tournaments::Registrations::Create do
       registration = repository.last
 
       registration.id.wont_be_nil
-      registration.player.first_name.must_equal params.dig(:registration, :player, :first_name)
+      assert_same player_repository.last.id, registration.player_id
+      assert_same @tournament.id, registration.tournament_id
     end
 
     it 'redirects the user to the tournament page' do
@@ -58,9 +61,8 @@ describe Web::Controllers::Tournaments::Registrations::Create do
       action.call(params)
       errors = action.params.errors
 
-      errors.dig(:registration, :player, :first_name).must_equal  ['is missing']
-      errors.dig(:registration, :player, :last_name).must_equal  ['is missing']
-      errors.dig(:registration, :player, :email).must_equal  ['is missing']
+      errors.dig(:tournament_id).must_equal  ['is missing']
+      errors.dig(:registration, :player).must_equal  ['is missing']
     end
   end
 end

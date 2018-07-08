@@ -1,3 +1,6 @@
+%h2
+  Player
+
 .player
   %p
     First Name:
@@ -7,3 +10,24 @@
     = player.last_name
 
 = link_to 'Players list', routes.players_path
+
+%h2
+  All tournaments
+
+- if player.tournaments.any?
+  %table#tournaments
+    %tr
+      %th Name
+      %th Date
+      %th Created at
+      %th Actions
+
+    - player.tournaments.each do |tournament|
+      %tr.tournament
+        %td= tournament.name
+        %td= tournament.date
+        %td= tournament.created_at
+        %td= link_to 'Show', routes.tournament_path(tournament.id)
+- else
+  %p.placeholder
+    There are no tournaments yet.

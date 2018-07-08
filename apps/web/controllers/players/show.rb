@@ -5,7 +5,7 @@ module Web::Controllers::Players
     expose :player
 
     def call(params)
-      @player = PlayerRepository.new.find(params[:id])
+      @player = PlayerRepository.new.find_with_tournaments(params[:id])
     end
   end
 end

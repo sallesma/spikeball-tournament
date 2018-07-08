@@ -2,7 +2,7 @@ require_relative '../../../spec_helper'
 
 describe Web::Views::Players::Show do
   let(:template)  { Hanami::View::Template.new('apps/web/templates/players/show.html.haml') }
-  let(:player)    { Player.new(id: 1,first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com') }
+  let(:player)    { Player.new(id: 1,first_name: 'George', last_name: 'Abitbol', email: 'george@spikeball.com', tournaments: []) }
   let(:exposures) { Hash[player: player] }
   let(:view)      { Web::Views::Players::Show.new(template, exposures) }
 
